@@ -1,0 +1,14 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div>
+            <button class="btn btn-info">
+                @Html.ActionLink("Vidly", "Index", "Home")
+            </button>
+            <button class="btn btn-outline-info">@Html.ActionLink("New Rental", "New", "Rentals")</button>
+            <button class="btn btn-outline-info">@Html.ActionLink("Customers", "Index", "Customers")</button>
+            <button class="btn btn-outline-info">@Html.ActionLink("Movies", "Index", "Movies")</button>
+            
+        </div>
+        @Html.Partial("_LoginPartial")
+    </div>
+</div>

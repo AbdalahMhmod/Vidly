@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Vidly.Models;
+using Vidly.ViewModels;
+
+namespace Vidly.Controllers
+{
+    public class MoviesController : Controller
+    {
+        // GET: Movies
+        public ActionResult Random()
+        {
+            var movie = new Movie() {Name = "Shrek"};
+            var cusromers = new List<Customer>
+            {
+                new Customer {Name = "abdallah"},
+                new Customer {Name = "sahar"},
+                new Customer {Name = "aya"},
+                new Customer {Name = "abdelrahman"}
+            };
+
+            var viewmodel = new RandomMoviewViewModel
+            {
+                Movie = movie,
+                Customers = cusromers
+            };
+            return View(viewmodel);
+        }
+    }
+}
