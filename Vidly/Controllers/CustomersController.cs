@@ -10,24 +10,10 @@ namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
-        private readonly List<Customer> _customers;
-
-        public CustomersController(List<Customer> customers)
-        {
-            _customers = customers;
-
-        }
-       
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = new List<Customer>
-            {
-                new Customer {Id = 1,Name = "aya"},
-                new Customer {Id = 2,Name = "rania"},
-                new Customer {Id = 3,Name = "mohamed"},
-                new Customer {Id = 4,Name = "youssef"}
-            };
+            var customers = GetAllCustomer();
 
             var viewmodel = new RandomMoviewViewModel
             {
@@ -38,7 +24,31 @@ namespace Vidly.Controllers
 
         public ActionResult Details(int? id)
         {
-            return Content("hi"+id);
+            try
+            {
+                var customer = GetAllCustomer().SingleOrDefault(c => c.Id == id);
+                if (customer==null)
+                {
+                    return HttpNotFound();
+                }
+                return View(customer);
+            }
+            catch (NullReferenceException NE)
+            {
+                return Content(NE.ToString());
+            }
+        }
+
+        public List<Customer> GetAllCustomer()
+        {
+            var customers = new List<Customer>
+            {
+                new Customer {Id = 1,Name = "aya"},
+                new Customer {Id = 2,Name = "rania"},
+                new Customer {Id = 3,Name = "mohamed"},
+                new Customer {Id = 4,Name = "youssef"}
+            };
+            return customers.ToList();
         }
     }
 }

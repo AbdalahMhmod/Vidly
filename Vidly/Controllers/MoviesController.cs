@@ -13,21 +13,26 @@ namespace Vidly.Controllers
         // GET: Movies
         public ActionResult Random()
         {
-            var movie = new Movie() {Name = "Shrek"};
-            var cusromers = new List<Customer>
-            {
-                new Customer {Name = "abdallah"},
-                new Customer {Name = "sahar"},
-                new Customer {Name = "aya"},
-                new Customer {Name = "abdelrahman"}
-            };
+            var movie = GetAllMovies().ToList();
 
             var viewmodel = new RandomMoviewViewModel
             {
-                Movie = movie,
-                Customers = cusromers
+                Movies = movie.ToList()
             };
             return View(viewmodel);
+        }
+
+        public List<Movie> GetAllMovies()
+        {
+            var movies = new List<Movie>
+            {
+                new Movie() {Id = 1, Name = "spider man"},
+                new Movie() {Id = 2, Name = "bat man"},
+                new Movie() {Id = 3, Name = "super man"},
+                new Movie() {Id = 4, Name = "iron man"}
+            };
+
+            return movies.ToList();
         }
     }
 }

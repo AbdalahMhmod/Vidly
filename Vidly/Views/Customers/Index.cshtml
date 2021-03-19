@@ -6,12 +6,18 @@
 
 <table class="table table-hover table-primary" style="width: 100%">
     <tr>
-        <th>Firstname</th>
+        <th>Customer Name</th>
     </tr>
     <td>
+        @if (Model.Customers.Count == 0)
+        {
+            <h3>We don't have any customers yet.</h3>
+        }
         @foreach (var customer in Model.Customers)
         {
-            <li>@Html.ActionLink(customer.Name, "Details", "Customers")</li>
+            <li>
+                @Html.ActionLink(customer.Name, "Details", "Customers", new {id = customer.Id}, null)
+            </li>
         }
     </td>
     

@@ -2,24 +2,21 @@
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var classname = Model.Customers.Count > 2 ? "popular" : null;
 }
 
-
-
-<h2 class="@classname">@Model.Movie.Name</h2>
-
-@if (Model.Customers.Count == 0)
-{
-    <text>No one has rented this movie yet .</text>
-}
-else
-{
-    <ul>
-        @foreach (var customer in Model.Customers)
+<table class="table table-hover table-primary" style="width: 100%">
+    <tr>
+        <th>Movie Name</th>
+    </tr>
+    <td>
+        @if (Model.Movies.Count == 0)
         {
-            <li>@customer.Name</li>
+            <h3>We don't have any movies yet.</h3>
         }
-    </ul>
-   
-}
+        @foreach (var movie in Model.Movies)
+        {
+            <li>@movie.Name</li>
+        }
+    </td>
+
+</table>
