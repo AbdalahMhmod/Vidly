@@ -10,29 +10,24 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Movies
         public ActionResult Random()
         {
-            var movie = GetAllMovies().ToList();
+            var movies = _context.Movies.ToList();
 
-            var viewmodel = new RandomMoviewViewModel
-            {
-                Movies = movie.ToList()
-            };
-            return View(viewmodel);
-        }
-
-        public List<Movie> GetAllMovies()
-        {
-            var movies = new List<Movie>
-            {
-                new Movie() {Id = 1, Name = "spider man"},
-                new Movie() {Id = 2, Name = "bat man"},
-                new Movie() {Id = 3, Name = "super man"},
-                new Movie() {Id = 4, Name = "iron man"}
-            };
-
-            return movies.ToList();
+            return View(movies);
         }
     }
 }

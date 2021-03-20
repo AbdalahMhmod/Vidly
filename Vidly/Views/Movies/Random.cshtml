@@ -1,4 +1,4 @@
-﻿@model Vidly.ViewModels.RandomMoviewViewModel
+﻿@model List<Vidly.Models.Movie>
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,11 +9,11 @@
         <th>Movie Name</th>
     </tr>
     <td>
-        @if (Model.Movies.Count == 0)
+        @if (!Model.Any())
         {
             <h3>We don't have any movies yet.</h3>
         }
-        @foreach (var movie in Model.Movies)
+        @foreach (var movie in Model)
         {
             <li>@movie.Name</li>
         }
