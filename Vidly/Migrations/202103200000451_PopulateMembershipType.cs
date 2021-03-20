@@ -7,10 +7,10 @@ namespace Vidly.Migrations
     {
         public override void Up()
         {
-            Sql("INSERT INTO MembershipTypes (Id, SingnUpFee, DurationInMonth, DiscountRate) VALUES (1, 0, 0, 0)");
-            Sql("INSERT INTO MembershipTypes (Id, SingnUpFee, DurationInMonth, DiscountRate) VALUES (2, 3, 1, 10)");
-            Sql("INSERT INTO MembershipTypes (Id, SingnUpFee, DurationInMonth, DiscountRate) VALUES (3, 90, 3, 15)");
-            Sql("INSERT INTO MembershipTypes (Id, SingnUpFee, DurationInMonth, DiscountRate) VALUES (4, 300, 12, 20)");
+            Sql("INSERT INTO MembershipTypes (Id, SingnUpFee, DurationInMonth, DiscountRate, Name) VALUES (1, 0, 0, 0, 'Pay as You Go')");
+            Sql("INSERT INTO MembershipTypes (Id, SingnUpFee, DurationInMonth, DiscountRate, Name) VALUES (2, 3, 1, 10, 'Monthly')");
+            Sql("INSERT INTO MembershipTypes (Id, SingnUpFee, DurationInMonth, DiscountRate, Name) VALUES (3, 90, 3, 15, 'Quarterly')");
+            Sql("INSERT INTO MembershipTypes (Id, SingnUpFee, DurationInMonth, DiscountRate, Name) VALUES (4, 300, 12, 20, 'annually')");
         }
         
         public override void Down()
