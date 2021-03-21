@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -58,9 +60,20 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            _context.Customers.Add(customer);
+            if (customer.Id==0)
+                _context.Customers.Add(customer);
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                //_context.Customers.AddOrUpdate(customerInDb);
+
+            }
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
